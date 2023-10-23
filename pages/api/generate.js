@@ -77,6 +77,8 @@ return `You will be provided with meeting notes, and your task is to summarize t
 - If applicable, topics that need to be discussed more fully in the next meeting:
 \\n
 
+
+With every different topic, make a new line between the topics with four dashes: ----. This will make your new line between the summary, action items, and additional topics. 
 Prompt: ${capitalizedmeetingchat}`;
 }
 /* 
