@@ -3,7 +3,7 @@ import { useState } from "react";
 import styles from "./index.module.css";
 
 export default function Home() {
-  const [stockbotInput, setstockbotInput] = useState("");
+  const [meetingchatInput, setmeetingchatInput] = useState("");
   const [result, setResult] = useState();
 
   async function onSubmit(event) {
@@ -14,7 +14,7 @@ export default function Home() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ stockbot: stockbotInput }),
+        body: JSON.stringify({ meetingchat: meetingchatInput }),
       });
 
       const data = await response.json();
@@ -23,7 +23,7 @@ export default function Home() {
       }
 
       setResult(data.result);
-      setstockbotInput("");
+      setmeetingchatInput("");
     } catch(error) {
       // Consider implementing your own error handling logic here
       console.error(error);
@@ -40,15 +40,14 @@ export default function Home() {
 
       <main className={styles.main}>
         <img src="/dog.png" className={styles.icon} />
-        <h3>Talk to Stockbot DIRECT</h3>
-        <p>This site is not availible to be accessed by the public and is intended for demonstration and development purposes. If you are not authorized to be on this site, proceed with caution.</p>
+        <h3>Meet the Meeting Summary Generator!</h3>
         <form onSubmit={onSubmit}>
           <input
             type="text"
-            name="stockbot"
-            placeholder="Enter any questions"
-            value={stockbotInput}
-            onChange={(e) => setstockbotInput(e.target.value)}
+            name="meetingchat"
+            placeholder="Copy paste your meeting notes"
+            value={meetingchatInput}
+            onChange={(e) => setmeetingchatInput(e.target.value)}
           />
           <input type="submit" value="Send" />
         </form>

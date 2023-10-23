@@ -32,11 +32,11 @@ export default async function (req, res) {
     return;
   }
 
-  const stockbot = req.body.stockbot || '';
-  if (stockbot.trim().length === 0) {
+  const meetingchat = req.body.meetingchat || '';
+  if (meetingchat.trim().length === 0) {
     res.status(400).json({
       error: {
-        message: "Please enter a valid stockbot",
+        message: "Please enter a valid meetingchat",
       }
     });
     return;
@@ -45,7 +45,7 @@ export default async function (req, res) {
   try {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: generatePrompt(stockbot),
+      prompt: generatePrompt(meetingchat),
       temperature: 0.6,
       max_tokens: 500,
     });
@@ -66,12 +66,18 @@ export default async function (req, res) {
   }
 }
 
-function generatePrompt(stockbot) {
-  const capitalizedstockbot =
-    stockbot[0].toUpperCase() + stockbot.slice(1).toLowerCase();
-  return `You are a bot that goes by the name "stockbot" and you are trying to help the user with basic questions in any way you can, respectfully and with dignity.
+function generatePrompt(meetingchat) {
+  const capitalizedmeetingchat =
+    meetingchat[0].toUpperCase() + meetingchat.slice(1).toLowerCase();
+return `You will be provided with meeting notes, and your task is to summarize the meeting as follows:
+- Overall summary of discussion:
+\\n
+- Action items (what needs to be done and who is doing it):
+\\n
+- If applicable, topics that need to be discussed more fully in the next meeting:
+\\n
 
-Prompt: ${capitalizedstockbot}`;
+Prompt: ${capitalizedmeetingchat}`;
 }
 /* 
   If the user asks for a current event that you cannot search up, return a variation of the message "I'm sorry, I do not have that information. Please refer to our stock lookup to get the information."
