@@ -78,7 +78,7 @@ return `You will be provided with meeting notes, and your task is to summarize t
 \\n
 
 
-With every different topic, make a new line between the topics with four dashes: ----. This will make your new line between the summary, action items, and additional topics. 
+With every different topic, make a new line between the topics with the backslash n command: \ n (without the space). This will make your new line between the summary, action items, and additional topics. 
 Prompt: ${capitalizedmeetingchat}`;
 }
 /* 
